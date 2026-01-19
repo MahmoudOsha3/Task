@@ -9,7 +9,9 @@ Route::post('login' , [LoginController::class , 'login']) ;
 
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::apiResource('order', OrderController::class) ;
+    Route::post('order', [OrderController::class , 'store']);
+    Route::post('order/receive/{order}', [OrderController::class , 'receive']);
+
 });
 
 

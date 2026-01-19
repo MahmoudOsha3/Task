@@ -29,4 +29,10 @@ class Order extends Model
         return $year . '0001' ;
     }
 
+
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class, 'order_id');
+    }
+
 }
