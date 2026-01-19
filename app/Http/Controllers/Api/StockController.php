@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\StockMovementResource;
 use App\Models\Product;
+use App\Models\StockMovement;
 use App\Repoistory\StockMovementRepoistoty;
 use App\Services\StockServices\StockServices;
 use App\Traits\ManageApiTrait;
@@ -20,6 +21,7 @@ class StockController extends Controller
 
     public function getProductStockDetails($productId)
     {
+        $this->authorize('view' , StockMovement::class );
         $product = $this->stockMovementRepoistoty->find($productId);
         $history = StockServices::ProductHistory($product) ;
         

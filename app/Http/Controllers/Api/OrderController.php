@@ -22,14 +22,14 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request)
     {
-        // $this->authorize('create' , Order::class) ;
+        $this->authorize('create' , Order::class) ;
         $purchaseOrder = $this->orderRepoistory->create($request->validated()) ;
         return $this->createApi($purchaseOrder , 'Order created successfullty') ;
     }
 
     public function receive(ReceiveOrderRequest $request , Order $order)
     {
-        // $this->authorize('recieve', Order::class) ;
+        $this->authorize('update', Order::class) ;
         $receiveOrder = $this->orderRepoistory->receiveOrder($request->validated() , $order);
         return $this->successApi($receiveOrder ,'Order received successfully') ;
     }

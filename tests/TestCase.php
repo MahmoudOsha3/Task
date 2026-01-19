@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Supplier;
 use App\Models\User;
@@ -31,6 +33,21 @@ abstract class TestCase extends BaseTestCase
     public function createProduct(array $attributes = [])
     {
         return Product::factory()->create($attributes) ;
+    }
+
+    public function createOrder(array $attributes = [])
+    {
+        $supplier = $this->createSupplier() ;
+        $user = $this->createUser();
+        $product = $this->createProduct();
+        $order = Order::factory()->create(['supplier_id' => $supplier->id , 'created_by' => $user->id] ) ;
+        $orderItem = $this->createOrderItem(['order_id' => $order->id  , 'product_id' => $product->id ]) ;
+        return $order ;
+    }
+
+    public function createOrderItem(array $attributes = [])
+    {
+        return OrderItem::factory()->create($attributes) ;
     }
 
 

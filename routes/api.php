@@ -9,12 +9,9 @@ Route::post('register' , [RegisterController::class , 'register']);
 Route::post('login' , [LoginController::class , 'login']) ;
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::post('order', [OrderController::class , 'store']);
-    Route::put('order/receive/{order}', [OrderController::class , 'receive']);
-    Route::post('order', [OrderController::class , 'store']);
-    Route::get('stock/{product}' , [StockController::class , 'getProductStockDetails']);
-
-
+    Route::post('order', [OrderController::class , 'store'])->name('order.store') ;
+    Route::put('order/receive/{order}', [OrderController::class , 'receive'])->name('order.receive') ;
+    Route::get('stock/{product}' , [StockController::class , 'getProductStockDetails'])->name('stock.product');
 });
 
 
