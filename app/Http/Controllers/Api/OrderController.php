@@ -20,7 +20,6 @@ class OrderController extends Controller
         $this->orderRepoistory = $orderRepoistory ;  
     }
 
-
     public function store(OrderRequest $request)
     {
         // $this->authorize('create' , Order::class) ;
@@ -30,13 +29,9 @@ class OrderController extends Controller
 
     public function receive(ReceiveOrderRequest $request , Order $order)
     {
+        // $this->authorize('recieve', Order::class) ;
         $receiveOrder = $this->orderRepoistory->receiveOrder($request->validated() , $order);
         return $this->successApi($receiveOrder ,'Order received successfully') ;
-    }
-
-    public function show($id)
-    {
-        //
     }
 
 }

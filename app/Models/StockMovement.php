@@ -10,4 +10,18 @@ class StockMovement extends Model
     use HasFactory;
     
     protected $fillable = ['product_id' , 'user_id' , 'order_id' , 'quantity'] ;
+
+
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class , 'order_id') ;
+    }
+
+    // user receiver
+    public function user()
+    {
+        return $this->belongsTo(User::class , 'user_id') ;
+    }
+
 }
