@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Auth\{LoginController , RegisterController} ;
+use App\Http\Controllers\Api\Auth\{LoginController , LogoutController, RegisterController} ;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\StockController;
 
@@ -12,6 +12,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('order', [OrderController::class , 'store'])->name('order.store') ;
     Route::put('order/receive/{order}', [OrderController::class , 'receive'])->name('order.receive') ;
     Route::get('stock/{product}' , [StockController::class , 'getProductStockDetails'])->name('stock.product');
+    Route::post('logout' , [LogoutController::class , 'logout']);
 });
 
 

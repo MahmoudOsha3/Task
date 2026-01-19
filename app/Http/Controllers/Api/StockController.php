@@ -24,7 +24,7 @@ class StockController extends Controller
         $this->authorize('view' , StockMovement::class );
         $product = $this->stockMovementRepoistoty->find($productId);
         $history = StockServices::ProductHistory($product) ;
-        
+
         return $this->successApi([
                 'product_name'        => $product->name,
                 'current_total_stock' => $product->total_stock,

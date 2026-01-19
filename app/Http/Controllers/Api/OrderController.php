@@ -17,7 +17,7 @@ class OrderController extends Controller
     protected $orderRepoistory ;
     public function __construct(OrderRepoistory $orderRepoistory)
     {
-        $this->orderRepoistory = $orderRepoistory ;  
+        $this->orderRepoistory = $orderRepoistory ;
     }
 
     public function store(OrderRequest $request)
@@ -29,7 +29,7 @@ class OrderController extends Controller
 
     public function receive(ReceiveOrderRequest $request , Order $order)
     {
-        $this->authorize('update', Order::class) ;
+        $this->authorize('update', $order);
         $receiveOrder = $this->orderRepoistory->receiveOrder($request->validated() , $order);
         return $this->successApi($receiveOrder ,'Order received successfully') ;
     }

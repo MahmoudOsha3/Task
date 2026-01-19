@@ -6,7 +6,7 @@ use App\Models\StockMovement;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class StockMovementPolicy
+class StockMovementtPolicy
 {
     use HandlesAuthorization;
 
@@ -15,7 +15,7 @@ class StockMovementPolicy
         //
     }
 
-    public function view(User $user, StockMovement $movement)
+    public function view(User $user)
     {
         return $user->role === 'storekeeper' ;
     }
